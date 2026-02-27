@@ -1,44 +1,38 @@
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
+
 /**
  * main class - use case palindrome app
  *
- * use case 6: Stack and Queue Based Palindrome checker
+ * use case 7: Deque Based Palindrome checker
  *
  * Description:
- * this class validates the palindrome using two data structure:
- * Queue (First In First Out)
- * Stack (Last In First OUt)
+ * this class validates the palindrome using Deque (Doubly ended queue)
  *
  *  the application:
- *  pushes characters to stack and enqueue in queue
- *  pops in the revers order and dequeue the queue and compare the each elements
+ *  pushes characters to deque
+ *  remove the elements from the both sides and compare the result
  *  displays the result
  *
  *
  * @author  Anjan
- * @version 6.0
+ * @version 7.0
  */
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        String input = "civic";
-        Queue<Character> queue= new LinkedList<>();
-        Stack<Character> stack=new Stack();
+        String input = "refer";
+        Deque<Character> deque=new ArrayDeque<>();
 
       //inserting into queue and stack
       for (char c: input.toCharArray()){
-          stack.push(c);
-          queue.add(c);
+          deque.addFirst(c);
       }
 
       boolean isPalindrome=true;
 
-      while (!queue.isEmpty()){
-          if(queue.remove()!=stack.pop()){
+      while (deque.size()>1){
+            if(deque.removeFirst()!=deque.removeLast()){
               isPalindrome=false;
               break;
           }

@@ -2,31 +2,38 @@
 /**
  * main class - use case palindrome app
  *
- * use case 2: Reverse String based Palindrome check
+ * use case 4: Character Array Based Validation
  * description
- * this class demonstrate reverse string based palindrome check
- *
+ * this class validates by converting the string into character array and comparing characters using the two pointer techinque
  * the application:
- * iterates the string in reverse order
- * build a reverse version
- * checks with the original string
- * display the validation result
- *
+ * convert the input string into character array using .tocharArray()
+ * use start and end pointers
+ *compares character efficiently
+ * display the result
  *
  * @author  Anjan
- * @version 3.0
+ * @version 4.0
  */
 public class PalindromeCheckerApp {
-    public static void main(String[] args){
-        String orginalString="anjna";
-        String reversedString="";
-        for(int i=orginalString.length()-1;i>=0;i--){
-            reversedString += orginalString.charAt(i);
+    public static void main(String[] args) {
+        String input = "radar";
+        char[] chars= input.toCharArray();
+        int start=0;
+        int end=chars.length-1;
+        boolean isPalindrome=true;
+        while (start<end){
+            if(chars[start]!=chars[end]){
+                isPalindrome=false;
+                break;
+            }
+            start++;
+            end--;
         }
-        if (orginalString.equals(reversedString)) {
-            System.out.println(orginalString+ " is palindrome ");
+        System.out.println("input: "+ input);
+        if(isPalindrome){
+            System.out.println("is Panlindrome? true");
         }
         else
-            System.out.println(orginalString+ " is not palindrome");
+            System.out.println("is Panlindrome? false");
     }
 }

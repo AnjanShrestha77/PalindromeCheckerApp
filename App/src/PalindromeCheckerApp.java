@@ -1,3 +1,4 @@
+
 /**
  * main class - use case palindrome app
  *
@@ -17,15 +18,15 @@
  */
 public class PalindromeCheckerApp {
     public static void main(String[] args){
-     String orginalString="anjna";
-     String reversedString="";
-     for(int i=orginalString.length()-1;i>=0;i--){
-         reversedString += orginalString.charAt(i);
-     }
+        String orginalString="anjna";
+        String reversedString="";
+        for(int i=orginalString.length()-1;i>=0;i--){
+            reversedString += orginalString.charAt(i);
+        }
         if (orginalString.equals(reversedString)) {
             System.out.println(orginalString+ " is palindrome ");
         }
         else
             System.out.println(orginalString+ " is not palindrome");
-        }
+    }
 }

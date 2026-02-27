@@ -1,40 +1,50 @@
 
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 /**
  * main class - use case palindrome app
  *
- * use case 4: Stack Based Palindrome checker
+ * use case 6: Stack and Queue Based Palindrome checker
+ *
  * Description:
- * this class validates the palindrome using stack based data structure which follows LIFO
+ * this class validates the palindrome using two data structure:
+ * Queue (First In First Out)
+ * Stack (Last In First OUt)
  *
  *  the application:
- *  pushes characters to stack
- *  pops in the revers order and compare with the string
+ *  pushes characters to stack and enqueue in queue
+ *  pops in the revers order and dequeue the queue and compare the each elements
  *  displays the result
  *
  *
  * @author  Anjan
- * @version 5.0
+ * @version 6.0
  */
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        String input = "noon";
-      Stack<Character> stack=new Stack();
+        String input = "civic";
+        Queue<Character> queue= new LinkedList<>();
+        Stack<Character> stack=new Stack();
 
+      //inserting into queue and stack
       for (char c: input.toCharArray()){
           stack.push(c);
+          queue.add(c);
       }
 
       boolean isPalindrome=true;
 
-      for(char c: input.toCharArray()){
-          if(c!=stack.pop()){
+      while (!queue.isEmpty()){
+          if(queue.remove()!=stack.pop()){
               isPalindrome=false;
               break;
           }
       }
 
+      //displaying the result
         System.out.println("input: "+input);
         System.out.println("is Palindrome? :"+isPalindrome);
 

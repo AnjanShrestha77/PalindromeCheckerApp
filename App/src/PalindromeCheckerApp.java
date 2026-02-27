@@ -1,40 +1,31 @@
 /**
  * main class - use case palindrome app
  *
- * use case 2: hardcoded Palindrome verification
+ * use case 2: Reverse String based Palindrome check
  * description
- * this class demonstrate basic palindrome validation using a hardcoded string value
+ * this class demonstrate reverse string based palindrome check
  *
  * the application:
- * stores a predefined string
- * compares characters from both sides
- * determine whether the string is palindrome or not
- * display the result in the console
- *
- * this demonstrate the fundamental comparison logic before using advanced data structures
- *
+ * iterates the string in reverse order
+ * build a reverse version
+ * checks with the original string
+ * display the validation result
  *
  *
  * @author  Anjan
- * @version 2.0
+ * @version 3.0
  */
 public class PalindromeCheckerApp {
     public static void main(String[] args){
-     //Hardcoded string
-        String word ="anjna";
-        boolean isPalindrome=true;
-        for(int i=0;i<word.length()/2;i++){
-            if(word.charAt(i)!=word.charAt(word.length()-i-1)){
-                isPalindrome=false;
-            }
-        }
-        System.out.println("Input text: anjna");
-        System.out.print("is it palindrome?:");
-        if (isPalindrome){
-            System.out.println("true");
+     String orginalString="anjna";
+     String reversedString="";
+     for(int i=orginalString.length()-1;i>=0;i--){
+         reversedString += orginalString.charAt(i);
+     }
+        if (orginalString.equals(reversedString)) {
+            System.out.println(orginalString+ " is palindrome ");
         }
         else
-            System.out.println("false");
-    }
-
+            System.out.println(orginalString+ " is not palindrome");
+        }
 }

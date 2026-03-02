@@ -5,34 +5,35 @@ import java.util.*;
 /**
  * main class - use case palindrome app
  *
- * use case 7: Deque Based Palindrome checker
+ * use case 8: Linked list  Based Palindrome checker
  *
  * Description:
- * this class validates the palindrome using Deque (Doubly ended queue)
+ * this class validates the palindrome using Linked list
  *
  *  the application:
- *  pushes characters to deque
- *  remove the elements from the both sides and compare the result
+ *  pushes characters to linked list
+ *  checks the first and last element of the list and continue
  *  displays the result
  *
  *
  * @author  Anjan
- * @version 7.0
+ * @version 8.0
  */
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        String input = "refer";
-        Deque<Character> deque=new ArrayDeque<>();
+        String input = "level";
+        LinkedList<Character> list=new LinkedList<>();
 
       //inserting into queue and stack
       for (char c: input.toCharArray()){
-          deque.addFirst(c);
+        list.add(c);
       }
 
       boolean isPalindrome=true;
 
-      while (deque.size()>1){
-            if(deque.removeFirst()!=deque.removeLast()){
+      while (list.size()>1){
+
+            if(list.removeFirst()!=list.removeLast()){
               isPalindrome=false;
               break;
           }

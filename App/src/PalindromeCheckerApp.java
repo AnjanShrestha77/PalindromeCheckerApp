@@ -5,44 +5,41 @@ import java.util.*;
 /**
  * main class - use case palindrome app
  *
- * use case 8: Linked list  Based Palindrome checker
+ * use case 9:Recursive Palindrome checker
  *
  * Description:
- * this class validates the palindrome using Linked list
+ * this class validates the palindrome using Call Stack
  *
  *  the application:
- *  pushes characters to linked list
- *  checks the first and last element of the list and continue
+ *  intialize start and end index of the string
+ *  checks the element of starting index and ending index recursively
  *  displays the result
  *
  *
  * @author  Anjan
- * @version 8.0
+ * @version 9.0
  */
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String input = "level";
-        LinkedList<Character> list=new LinkedList<>();
+       int start=0;
+       int end=input.length()-1;
 
-      //inserting into queue and stack
-      for (char c: input.toCharArray()){
-        list.add(c);
-      }
 
-      boolean isPalindrome=true;
-
-      while (list.size()>1){
-
-            if(list.removeFirst()!=list.removeLast()){
-              isPalindrome=false;
-              break;
-          }
-      }
-
-      //displaying the result
         System.out.println("input: "+input);
-        System.out.println("is Palindrome? :"+isPalindrome);
+        System.out.println("is Palindrome? :"+isPalindrome(input,start,end));
 
+
+    }
+    public static boolean isPalindrome(String s, int start , int end){
+        if (start>=end){
+            return true;
+        }
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
+        }
+
+        return isPalindrome(s,start+1,end-1);
 
     }
 }

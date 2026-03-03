@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  ============================================================
- MAIN CLASS - UseCase13PalindromePerformanceApp
+ MAIN CLASS - PalindromeCheckerApp
  ============================================================
 
  Use Case 13: Performance Comparison
@@ -17,7 +17,7 @@ import java.util.*;
  3. Deque Based Approach
 
  The application:
- - Executes each algorithm
+ - Executes each algorithm checks performance
  - Captures execution time using System.nanoTime()
  - Displays performance results
 

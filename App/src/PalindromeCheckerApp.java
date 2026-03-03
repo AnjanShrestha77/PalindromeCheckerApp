@@ -1,53 +1,62 @@
+/** MAIN CLASS - UseCase12PalindromeCheckerApp
+
+ Use Case 12: Strategy Pattern for Palindrome Algorithms
+
+ Description:
+ This class demonstrates how different palindrome
+ validation algorithms can be selected dynamically
+ at runtime using the Strategy Design Pattern.
+
+ At this stage, the application:
+
+ Defines a common PalindromeStrategy interface
+
+ Implements a concrete Stack based strategy
+
+ Injects the strategy at runtime
+
+ Executes the selected algorithm
+
+ No performance comparison is done in this use case.
+ The focus is purely on algorithm interchangeability.
 
 
-/**
-Use Case 11: Object-Oriented Palindrome Service
+ @author Anjan
+ @version 12.0
+ */
+import java.util.*;
 
-Description:
-This class demonstrates palindrome validation using
-        object-oriented design.
+public class PalindromeCheckerApp {
 
-The palindrome logic is encapsulated inside a
-PalindromeService class.
+        public static void main(String[] args) {
 
-This improves:
+            Scanner sc = new Scanner(System.in);
 
-Reusability
- Readability
- Separation of concerns
+            System.out.println("Choose Strategy:");
+            System.out.println("1. Stack Strategy");
+            System.out.println("2. Deque Strategy");
 
-@author Anjan
-@version 11.0
-*/
+            int choice = sc.nextInt();
+            sc.nextLine(); // consume newline
 
-import java.util.Stack;
+            System.out.print("Enter a string: ");
+            String input = sc.nextLine();
 
-class PalindromeCheckerApp {
+            PalindromeStrategy strategy;
 
-    // Encapsulated method
-    public boolean checkPalindrome(String input) {
-
-        // Null check
-        if (input == null) {
-            return false;
-        }
-
-        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
-
-        Stack<Character> stack = new Stack<>();
-
-        // Push all characters into stack
-        for (int i = 0; i < cleaned.length(); i++) {
-            stack.push(cleaned.charAt(i));
-        }
-
-        // Compare by popping
-        for (int i = 0; i < cleaned.length(); i++) {
-            if (cleaned.charAt(i) != stack.pop()) {
-                return false;
+            if (choice == 1) {
+                strategy = new StackStrategy();
+            } else {
+                strategy = new DequeStrategy();
             }
-        }
 
-        return true;
+            PalindromeService service = new PalindromeService(strategy);
+
+            boolean result = service.validate(input);
+
+            System.out.println("Is Palindrome? : " + result);
+
+            sc.close();
+        }
     }
-}
+

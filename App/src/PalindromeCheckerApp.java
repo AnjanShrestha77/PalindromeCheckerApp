@@ -1,48 +1,53 @@
 
 
-import java.util.*;
-
 /**
- * main class - use case palindrome app
- *
- * use case 10:Normalized Palindrome Validation
- *
- * Description:
- * this class validates the palindrome after processing the input string
- *
- *  the application:
- *  get the input string and convert it into lowercase
- *  remove the spaces and other characters from input string and form a normalized string
- *  check for palindrome and display the result
- *
- *
- * @author  Anjan
- * @version 10.0
- */
-public class PalindromeCheckerApp {
-    public static void main(String[] args) {
-        String input = "A man a plan a canal panama";
-        boolean isPalindrome=true;
-        input=input.toLowerCase();
-        String normalizedString ="";
-        for(char c:input.toCharArray()){
-            if(Character.isLetterOrDigit(c)){
-                normalizedString+=c;
+Use Case 11: Object-Oriented Palindrome Service
+
+Description:
+This class demonstrates palindrome validation using
+        object-oriented design.
+
+The palindrome logic is encapsulated inside a
+PalindromeService class.
+
+This improves:
+
+Reusability
+ Readability
+ Separation of concerns
+
+@author Anjan
+@version 11.0
+*/
+
+import java.util.Stack;
+
+class PalindromeCheckerApp {
+
+    // Encapsulated method
+    public boolean checkPalindrome(String input) {
+
+        // Null check
+        if (input == null) {
+            return false;
+        }
+
+        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
+
+        Stack<Character> stack = new Stack<>();
+
+        // Push all characters into stack
+        for (int i = 0; i < cleaned.length(); i++) {
+            stack.push(cleaned.charAt(i));
+        }
+
+        // Compare by popping
+        for (int i = 0; i < cleaned.length(); i++) {
+            if (cleaned.charAt(i) != stack.pop()) {
+                return false;
             }
         }
 
-        for(int i=0;i<normalizedString.length()-1;i++){
-            if(normalizedString.charAt(i)!=normalizedString.charAt(normalizedString.length()-1-i)){
-                isPalindrome=false;
-                break;
-            }
-        }
-
-
-
-        System.out.println("input: "+input);
-        System.out.println("is Palindrome? :"+isPalindrome);
-
-
+        return true;
     }
 }

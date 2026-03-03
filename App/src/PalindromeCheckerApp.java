@@ -1,53 +1,114 @@
-
+import java.util.*;
 
 /**
-Use Case 11: Object-Oriented Palindrome Service
+ ============================================================
+ MAIN CLASS - UseCase13PalindromePerformanceApp
+ ============================================================
 
-Description:
-This class demonstrates palindrome validation using
-        object-oriented design.
+ Use Case 13: Performance Comparison
 
-The palindrome logic is encapsulated inside a
-PalindromeService class.
+ Description:
+ This application compares the execution time of
+ different palindrome validation algorithms.
 
-This improves:
+ Algorithms Compared:
+ 1. Two Pointer Approach
+ 2. Stack Based Approach
+ 3. Deque Based Approach
 
-Reusability
- Readability
- Separation of concerns
+ The application:
+ - Executes each algorithm
+ - Captures execution time using System.nanoTime()
+ - Displays performance results
 
-@author Anjan
-@version 11.0
-*/
+ @author Anjan
+ @version 13.0
+ ============================================================
+ */
 
-import java.util.Stack;
+public class PalindromeCheckerApp {
 
-class PalindromeCheckerApp {
+    public static void main(String[] args) {
 
-    // Encapsulated method
-    public boolean checkPalindrome(String input) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
 
-        // Null check
-        if (input == null) {
-            return false;
+        // Normalize input
+        String cleaned = input.replaceAll("\\W", "").toLowerCase();
+
+
+        long start1 = System.nanoTime();
+        boolean result1 = twoPointer(cleaned);
+        long end1 = System.nanoTime();
+        long time1 = end1 - start1;
+
+
+        long start2 = System.nanoTime();
+        boolean result2 = stackMethod(cleaned);
+        long end2 = System.nanoTime();
+        long time2 = end2 - start2;
+
+
+        long start3 = System.nanoTime();
+        boolean result3 = dequeMethod(cleaned);
+        long end3 = System.nanoTime();
+        long time3 = end3 - start3;
+
+        System.out.println("\nResults:");
+        System.out.println("Two Pointer Result: " + result1 + " | Time: " + time1 + " ns");
+        System.out.println("Stack Result: " + result2 + " | Time: " + time2 + " ns");
+        System.out.println("Deque Result: " + result3 + " | Time: " + time3 + " ns");
+
+        sc.close();
+    }
+
+
+    public static boolean twoPointer(String str) {
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
+        return true;
+    }
 
-        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
+
+    public static boolean stackMethod(String str) {
 
         Stack<Character> stack = new Stack<>();
 
-        // Push all characters into stack
-        for (int i = 0; i < cleaned.length(); i++) {
-            stack.push(cleaned.charAt(i));
+        for (char c : str.toCharArray()) {
+            stack.push(c);
         }
 
-        // Compare by popping
-        for (int i = 0; i < cleaned.length(); i++) {
-            if (cleaned.charAt(i) != stack.pop()) {
+        for (char c : str.toCharArray()) {
+            if (c != stack.pop()) {
                 return false;
             }
         }
+        return true;
+    }
 
+
+    public static boolean dequeMethod(String str) {
+
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (char c : str.toCharArray()) {
+            deque.addLast(c);
+        }
+
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
+                return false;
+            }
+        }
         return true;
     }
 }
